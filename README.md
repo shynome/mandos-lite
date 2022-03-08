@@ -34,7 +34,7 @@ code change
 - fix: call dbus when don't use dbus
 
 disabled option
-- disable dbus. we the dbus can't run in termux proot debian 
+- disable dbus. the dbus can't run in termux proot debian 
 - disable zeroconf
 - disable restore. we can't op the clients status
 
