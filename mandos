@@ -184,14 +184,14 @@ def copy_function(func):
 def initlogger(debug, level=logging.WARNING):
     """init logger and add loglevel"""
 
-    global syslogger
-    syslogger = (logging.handlers.SysLogHandler(
-        facility=logging.handlers.SysLogHandler.LOG_DAEMON,
-        address="/dev/log"))
-    syslogger.setFormatter(logging.Formatter
-                           ('Mandos [%(process)d]: %(levelname)s:'
-                            ' %(message)s'))
-    logger.addHandler(syslogger)
+    # global syslogger
+    # syslogger = (logging.handlers.SysLogHandler(
+    #     facility=logging.handlers.SysLogHandler.LOG_DAEMON,
+    #     address="/dev/log"))
+    # syslogger.setFormatter(logging.Formatter
+    #                        ('Mandos [%(process)d]: %(levelname)s:'
+    #                         ' %(message)s'))
+    # logger.addHandler(syslogger)
 
     if debug:
         console = logging.StreamHandler()
@@ -3227,7 +3227,9 @@ def main():
     # From the Avahi example code
     DBusGMainLoop(set_as_default=True)
     main_loop = GLib.MainLoop()
-    bus = dbus.SystemBus()
+    global bus
+    if use_dbus:
+        bus = dbus.SystemBus()
     # End of Avahi example code
     if use_dbus:
         try:
