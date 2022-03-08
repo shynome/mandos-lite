@@ -16,7 +16,7 @@ let mandos server running on termux
 1. install mandos in proot debian  
    `apt install mandos`
 
-1. change `/usr/sbin/mandos` like "change mandos python file" section
+1. change `/usr/sbin/mandos` follow "change mandos python file" section
 
 1. add clients to `/etc/mandos/clients.conf`  
    remember change checker to `checker = echo 1`
@@ -26,6 +26,17 @@ let mandos server running on termux
    `mandos --no-dbus --no-zeroconf --no-restore --port 9601 --foreground`
 
 # change mandos python file
+
+run command: `mandos --no-dbus --no-zeroconf --no-restore --port 9601 --debug`
+
+code change
+- remove syslogger
+- fix: call dbus when don't use dbus
+
+disabled option
+- disable dbus. we the dbus can't run in termux proot debian 
+- disable zeroconf
+- disable restore. we can't op the clients status
 
 ```python
 @@ -184,14 +184,14 @@ def copy_function(func):
